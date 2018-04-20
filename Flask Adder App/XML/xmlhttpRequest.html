@@ -1,0 +1,24 @@
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+
+<body>
+	<div id="foo"></div>
+	<script type="text/javascript">
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function () {
+			console.log(this.readyState)
+			if (this.readyState == 4 && this.status == 200) {
+				// Typical action to be performed when the document is ready:
+				document.getElementById("foo").innerHTML = xhttp.responseText;
+			}
+		};
+		xhttp.open("GET", "/getnum", true);
+		xhttp.send();
+	</script>
+</body>
+
+</html>

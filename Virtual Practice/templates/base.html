@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <title>{{title}}</title>
+    </head>
+    <body>
+        {% block title %}
+        <h1>Stuff {{ myDict.egg }} </h1>
+        {%endblock%}
+        {%block numbers%}
+        <p>Look at these Numbers! {{nums}}</p>
+        <table>
+            {%for item in range(nums|length)%}
+            <tr>
+                <td>{{nums[item]}}</td>
+                <td>{{nums[item]}}</td>
+                <td>{{nums[item]}}</td>
+                <td>{{nums[item]}}</td>
+                <td>{{nums[item]}}</td>
+            </tr>
+            {%endfor}
+        </table>
+        {%endblock%}
+        {% block footer %}
+        <p>The End</p>
+        {%endblock%}
+    </body>
+</html>
