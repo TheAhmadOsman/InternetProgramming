@@ -1,0 +1,15 @@
+<html>
+	<body>
+		<h1>Isn't this fun?</h1>
+		{%block numbers%}
+		<p> Look at these Numbers! {{target}}</p>
+		<table>
+			{%for item in range(target)%}
+			<tr>
+				<td>{{numList[item]}}
+			</tr>
+			{%endfor%}
+		</table>
+		{%endblock%}
+	</body>
+</html>

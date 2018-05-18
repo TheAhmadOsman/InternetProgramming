@@ -1,0 +1,61 @@
+CRUD -> Create, Retrieve, Update, and Delete
+
+DB-API  is a App Prog Int -> Driver that can connect to mysql, oracle, postgresql, sqlit3. You connect and create a cursor that can execute any statement or do a fetch/fetchall for 95% of the tasks.
+
+We have records and sqlalchemy beside db-API
+
+sqlalchemy -> Relational Object Model
+
+Psycopg2 or PG8000 for postgresql
+
+
+import psycopg2
+
+conn = psycopg2.connect(user='osmaah02', host='knuth.luther.edu', dbname='world')
+conn = psycopg2.connect('postgresql://osmaah2:@knuth.luther.edu/world')
+
+cur = conn.cursor()
+cur.execute("select * from country limit 10")
+res = cur.fetchall()
+res
+
+We will have a problem wth security when connecting, to fix that, we need to do an ssh-tunnel.
+
+ssh -f osmaah02@knuth.luther.edu -L 23456:localhost:5432 -N
+
+conn = psycopg2.connect(user="osmaah02", host="localhost", port=23456, dbname="world")
+conn = psycopg2.connect("postgresql://osmaah02:@localhost:23456/world")
+
+
+curs = conn.cursor()
+curs.execute("select * from country limit 10")
+res = curs.fetchall()
+res
+
+curs.execute("select * from country where continent = 'Asia'")
+res = curs.fetchall()
+res
+
+Integrate this into a little flask app that will have
+    phase 1: single route to uri that will go out and get all the country informations that are on a specific continent, make atable to show these information.
+    phase 2: add a simple form thtat you give a continent and give you get a page with the countries from that continent.
+
+---------------------------------------------------
+
+Working on the assignment from tuesday, creating an sqlite database... You can find a cdata.zip on GitHub, he wants us to parse that country file and use it to make a database with sqllite3.
+
+Final projects idea...
+
+---------------------------------------------------
+
+Notes on records
+
+    >>> import records
+    >>> db2 = records.Database('sqlite:///mydb.db')
+    >>> db2.query('create table person (first_name text, last_name text)')
+    <RecordCollection size=0 pending=True>
+    >>> db2.query("""insert into person values ('Brad', 'Miller')""")
+    <RecordCollection size=0 pending=True>
+    >>> res = db2.query("""select * from person""")
+    >>> res[0]
+    <Record {"first_name": "Brad", "last_name": "Miller"}>

@@ -1,0 +1,48 @@
+<html>
+	<head>
+		<title>{{title}}</title> 
+	</head>
+	<body>
+		{% block title %}
+		<h1>Stuff {{ myDict.egg }}</h1>
+		{%endblock%}
+		{%block form%}
+		<form action="/form">
+<!-- 		<label for="first">First Name</label>
+			<input type="text" id="first" name="firstName" placeholder="Jesse">
+			<br>
+			<label for="last">Last Name</label>
+			<input type="text" id="last" name="lastName" placeholder="James">
+			<br>
+			<label for=eggs>Eggs</label>
+			<input type="checkbox" name="make" id=eggs value="eggs">
+			<label for=bacon>Bacon</label>
+			<input type="checkbox" name="make" id=bacon value="bacon">
+			<label for=toast>Toast</label>
+			<input type="checkbox" name="make" id=toast value="toast"> -->
+			<label for=nums>How many numbers?</label>
+			<input type=text name=numCount id=nums placeholder=12>
+			<br>
+			<input type="submit">
+		</form>
+		{%endblock%}
+
+		{%block numbers%}
+		<p> Look at these Numbers! {{nums}}</p>
+		<table>
+			{%for item in range(nums|length)%}
+			<tr>
+				<td>{{nums[item]}}
+				<td>{{nums[item]}}
+				<td>{{nums[item]}}
+				<td>{{nums[item]}}
+				<td>{{nums[item]}}
+			</tr>
+			{%endfor%}
+		</table>
+		{%endblock%}
+		{% block footer %}
+		<p>The End</p>
+		{%endblock%}
+	</body>
+</html>
